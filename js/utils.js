@@ -8,7 +8,8 @@ function doloadGPTScript(resolve, reject, limitedAds) {
   window.googletag.cmd = window.googletag.cmd || [];
 
   const scriptTag = document.createElement('script');
-  scriptTag.src = `${document.location.protocol}//${limitedAds ? GPT_SRC.limitedAds : GPT_SRC.standard}/tag/js/gpt.js`;
+  const protocol = ['http:', 'https:'].includes(document.location.protocol) ? document.location.protocol : 'https:';
+  scriptTag.src = `${protocol}//${limitedAds ? GPT_SRC.limitedAds : GPT_SRC.standard}/tag/js/gpt.js`;
   scriptTag.async = true;
   scriptTag.type = 'text/javascript';
   scriptTag.onerror = function scriptTagOnError(errs) {
